@@ -1,0 +1,24 @@
+{
+  "name": "NodeJS-Express-RestApi-1234",
+  "version": "1.0.0",
+  "description": "```C\r     Request\r ```\r ## 5) NodeJS гэж юу вэ? Түүний бусдаас ялгарах давуу тал, single-threaded, non-blocking, event driven хандлагыг ойлгох нь\r ```C \r     nodeJS - V8г ашигладаг",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baasankhuu-p/NodeJS-Express-RestApi-1234.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baasankhuu-p/NodeJS-Express-RestApi-1234/issues"
+  },
+  "homepage": "https://github.com/baasankhuu-p/NodeJS-Express-RestApi-1234#readme",
+  "dependencies": {
+    "axios": "^1.2.2",
+    "request": "^2.88.2"
+  }
+}
