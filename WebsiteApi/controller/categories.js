@@ -1,9 +1,16 @@
-const Category = require("../Models/Category")
-const MyError = require("../utils/myError")
+const Category = require("../Models/Category");
+const MyError = require("../utils/myError");
+const color = require('colors');
 const asyncHandler = require('../middleware/asyncHandler')
 exports.getCategories = asyncHandler(async(req, res, next) => {
+  
   console.log(req.query);
-    const category = await Category.find(req.query);
+  select = req.query.select || {};
+  sort = req.query.sort || {};
+  delete req.query.select,req.query.sort;
+  console.log('deleted All',req.query);
+    const category = await Category.find(req.query,select)
+                                  .sort("-"+sort);
     res.status(200).json({
       success: true,
       data: category,

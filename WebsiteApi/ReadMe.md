@@ -264,3 +264,23 @@ exports.getCategory = asyncHandler(async(req, res, next) => {
     Postman: find
         /api/v1/categories?averagePrice[$gte]=66589
 ```
+
+## 38) Категориудаас талбарыг нь сонгож авах, эрэмбэлэх Select, Sort хийх нь
+```C
+    select = req.query.select || {};
+    sort = req.query.sort || {};
+    resolve=req.query.resolve || {};
+    delete req.query.select,req.query.sort,req.query.resolve;
+    console.log('deleted All',req.query);
+    const category = await Category.find(req.query,select).sort("-"+sort);
+```
+## 39) Категориудыг хуудаслах буюу PAGINATION хэрхэн хийх вэ?
+```C
+    RESY=T API руу дамжуулах утгаад
+    - page: Хэддүгээр хуудасны мэдээллэийг авахыг заана
+    - limit: Нэг хуудсанд хэдэн үр дүн байхыг заана
+    Бодож олох аргууд
+    - total: Нийт элементийн тоо: Базаас авна
+    - pageCount: Нийт хуудасны тоо: Math.ceil(total/limit)
+    - start: Заагдсан хуудасны элементийн дэс дугаар: (pages-1)*limit+1
+```
