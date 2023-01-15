@@ -1,0 +1,26 @@
+[
+    {
+        "_id": "63c3abf2d4e47b4516b4f935",
+        "name": "Физик I",
+        "description": "Шинжлэх ухаан",
+        "photo": "pizik.png",
+        "createdAt": "2023-01-15T07:32:02.069Z",
+        "__v": 0
+    },
+    {
+        "_id": "63c3ac21b6bd1f1bda0ca251",
+        "name": "Физик II",
+        "description": "Шинжлэх ухаан",
+        "photo": "pizik.png",
+        "createdAt": "2023-01-15T07:32:49.577Z",
+        "__v": 0
+    },
+    {
+        "_id": "63c3fd93b6bd1f1bda0ca256",
+        "name": "Математик II",
+        "description": "Шинжлэх ухаан",
+        "photo": "pizik.png",
+        "createdAt": "2023-01-15T13:20:19.927Z",
+        "__v": 0
+    }
+]
