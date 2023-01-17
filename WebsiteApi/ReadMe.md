@@ -276,11 +276,69 @@ exports.getCategory = asyncHandler(async(req, res, next) => {
 ```
 ## 39) Категориудыг хуудаслах буюу PAGINATION хэрхэн хийх вэ?
 ```C
-    RESY=T API руу дамжуулах утгаад
+    REST API руу дамжуулах утгаад
     - page: Хэддүгээр хуудасны мэдээллэийг авахыг заана
     - limit: Нэг хуудсанд хэдэн үр дүн байхыг заана
     Бодож олох аргууд
     - total: Нийт элементийн тоо: Базаас авна
     - pageCount: Нийт хуудасны тоо: Math.ceil(total/limit)
-    - start: Заагдсан хуудасны элементийн дэс дугаар: (pages-1)*limit+1
+    - start: Заагдсан хуудасны эхлэх элементийн дэс дугаар: (pages-1)*limit+1
+    - end: Заагдсан хуудасны төгсөн элементийн дэс дугаар: start+limit-1 || total
+    - nextPage: Дараачийн хуудасны дугаар: page+1 || udefined
+    - prevPage: Өмнөх хуудасны дугаар: page-1 || udefined
+```
+## 40) Категориудыг хуудаслалтын кодыг бичих хэсэг, Mongoose skip, limit ашиглах
+## 44) Mongoose Virtuals гэж юу вэ? Virtuals, populate ашиглан холбоотой документуудын мэдээллийг татаж үзүүлэх
+```C
+    .populate('books'); //getCategory req ywuulhad books talbar nemeh
+    //model hesegt
+    ,{ toJSON: {virtuals: true}, toObject: {virtuals: true}}
+    //Categortoo
+    CategorySchema.virtual('books',{
+        ref:'Book',//Book talbaraas avah
+        localField: '_id',//Categor-n id-aar 
+        foreignField: 'category',//Category-n _id -tei Books talbaraas ijilhn category-n nomnuudn mdeellg avna
+        justOne: false
+    })
+```
+## 45) Mongoose PRE middleware ашиглан категорийг устгахад уг категорийн номнуудыг давхар устгах нь, Mongoose SAVE функцээр өөрчлөх
+```C
+
+    //controller/categore.js
+    const category = await Category.findByIdAndDelete(req.params.id);
+    if(!category)
+    {
+      throw new MyError(`${req.params.id}-ийм ID-тай Категори олдсонгүй ..`,400)
+    }
+    //үүнийг өөрчилж бичих тэгэхгүй бол mongoose дээр remove үзэгдлийг барьж чадахгүй байх магадлалтай
+    const category = await Category.findById(req.params.id);
+    if(!category)
+    {
+      throw new MyError(`${req.params.id}-ийм ID-тай Категори олдсонгүй ..`,400)
+    }
+    category.remove();
+
+    //model/categore.js
+    CategorySchema.pre('remove',async function(next) {
+        console.log('remove...');
+        await this.model('Book').deleteMany({category: this._id})
+        next();
+    });
+```
+## 50) Номын зургийг upload хийх апи бичицгээе! Зөвхөн зураг upload хийх ба заагдсан хэмжээнээс хэтрэхгүй байх зэргийг шалгана
+```C
+    bash: npm i express-fileupload
+
+    const file = req.files.file;
+    //file type check
+    if(!file.mimetype.startsWith("image")){
+      /*..err type.message*/
+    };
+    //file size check
+    if(file.size>process.env.IMAGE_SIZE){
+      /*...err size.message*/
+    }
+    file.mv(`/*file-url*/`,err=>{
+        ...err message
+    })
 ```

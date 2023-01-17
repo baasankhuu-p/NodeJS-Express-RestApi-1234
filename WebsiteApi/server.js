@@ -1,4 +1,5 @@
 const express = require("express");
+const fileUpload = require('express-fileupload');
 const dotenv = require("dotenv");
 var path = require("path");
 var rfs = require("rotating-file-stream");
@@ -14,6 +15,7 @@ const colors = require('colors');
 
 // Router оруулж ирэх
 const categoriesRoutes = require("./routes/categories");
+const bookRoutes = require("./routes/books");
 
 const app = express();
 
@@ -29,10 +31,11 @@ var accessLogStream = rfs.createStream("access.log", {
 
 //Body Parser - Энэ нь шинээр req ирхэд express.н json-д өгөх гэж
 app.use(express.json());
-
+app.use(fileUpload());
 app.use(logger);
 app.use(morgan("combined", { stream: accessLogStream }));
 app.use("/api/v1/categories", categoriesRoutes);
+app.use("/api/v1/books", bookRoutes);
 //err middleware
 app.use(ErrorHandler)
 const server = app.listen(
