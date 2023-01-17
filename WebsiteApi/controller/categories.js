@@ -1,6 +1,7 @@
 const Category = require("../Models/Category");
 const MyError = require("../utils/myError");
 const color = require('colors');
+const pagenate = require('../utils/paginate');
 const path = require('path')
 
 const asyncHandler = require('../middleware/asyncHandler')
@@ -13,29 +14,13 @@ exports.getCategories = asyncHandler(async(req, res, next) => {
   const limit = parseInt(req.query.limit) || 100;
   ["select","sort","page","limit"].forEach( el => delete req.query[el])
   
-  console.log('deleted All: '.red.underline.bold,req.query.red);
-  
   //pagenation
-  const total = await Category.countDocuments();
-  const pageCount = Math.ceil(total/limit);
-  const start = (page-1)*limit+1;
-  let end = start+limit-1;
-  if(end > total) end=total;
-  const pagenation = {
-    total,
-    pageCount,
-    start,
-    end,
-    limit
-  }
-  if(page < pageCount) pagenation.nextPage = page+1;
-  if(page > 1) pagenation.prevPage = page-1;
-  console.log("pagenation: ",pagenation)
-
+  
+  const pagenation = await pagenate(page, limit, Category);
   const category = await Category.find(req.query,select)
-                                .sort(sort)
-                                .skip(start-1)
-                                .limit(limit);
+                                  .sort(sort)
+                                  .skip(pagenation.start-1)
+                                  .limit(limit);
     res.status(200).json({
       success: true, 
       data: category,
