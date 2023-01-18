@@ -326,6 +326,7 @@ exports.getCategory = asyncHandler(async(req, res, next) => {
     });
 ```
 ## 50) Номын зургийг upload хийх апи бичицгээе! Зөвхөн зураг upload хийх ба заагдсан хэмжээнээс хэтрэхгүй байх зэргийг шалгана
+
 ```C
     bash: npm i express-fileupload
 
@@ -341,4 +342,21 @@ exports.getCategory = asyncHandler(async(req, res, next) => {
     file.mv(`/*file-url*/`,err=>{
         ...err message
     })
+```
+## 55) Хэрэглэгчийг бүртгэх, нууц үгийг bcrypt ашиглан шифрлэн хадгалах
+```C
+    bash: $ npm i bcrypt --save
+    //passiig oilgomjgui blgj oorchlnoo ingsneer hack-s baga zrg secure hgdj ognoo
+
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt)
+```
+## 56) Bcrypt болон md5 хэшийн тухай, brute force халдлага гэж юу болох, хэрхэн сэргийлэх вэ?
+```C
+    https://www.md5hashgenerator.com/
+```
+## 57) JWT гэж юу вэ? Хэрэглэгчийг амжилтттай бүртгэсний дараа JWT токенийг буцаах
+```C
+    https://www.npmjs.com/package/jsonwebtoken
+    bash: $ npm install jsonwebtoken
 ```

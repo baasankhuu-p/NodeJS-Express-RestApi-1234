@@ -16,6 +16,7 @@ const colors = require('colors');
 // Router оруулж ирэх
 const categoriesRoutes = require("./routes/categories");
 const bookRoutes = require("./routes/books");
+const usersRoutes = require("./routes/users");
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use(logger);
 app.use(morgan("combined", { stream: accessLogStream }));
 app.use("/api/v1/categories", categoriesRoutes);
 app.use("/api/v1/books", bookRoutes);
+app.use("/api/v1/users", usersRoutes);
 //err middleware
 app.use(ErrorHandler)
 const server = app.listen(

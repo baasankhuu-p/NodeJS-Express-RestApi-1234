@@ -1,7 +1,7 @@
 const Category = require("../Models/Category");
 const MyError = require("../utils/myError");
 const color = require('colors');
-const pagenate = require('../utils/paginate');
+const paginate = require('../utils/paginate');
 const path = require('path')
 
 const asyncHandler = require('../middleware/asyncHandler')
@@ -16,7 +16,7 @@ exports.getCategories = asyncHandler(async(req, res, next) => {
   
   //pagenation
   
-  const pagenation = await pagenate(page, limit, Category);
+  const pagenation = await paginate(page, limit, Category);
   const category = await Category.find(req.query,select)
                                   .sort(sort)
                                   .skip(pagenation.start-1)

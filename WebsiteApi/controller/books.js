@@ -4,30 +4,59 @@ const MyError = require("../utils/myError");
 const asyncHandler = require('../middleware/asyncHandler');
 const path = require('path');
 const { findById } = require("../Models/book");
-
+const paginate = require('../utils/paginate');
 //api/v1/books
-//ap/v1/categories/:categoryId/books
 exports.getBooks = asyncHandler(async(req, res, next) => {
-    //deer ajilj ehelsn query-g huleegd duushaar doosh huselt shidne
-    const books = await Books.find().populate({
+    
+  console.log("== {query data} ==>".rainbow,req.query);
+  const select = req.query.select || {};
+  const sort = req.query.sort || {};
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 5;
+  ["select","sort","page","limit"].forEach( el => delete req.query[el])
+  
+  //pagenation
+  
+  const pagenation = await paginate(page, limit, Books);
+  //deer ajilj ehelsn query-g huleegd duushaar doosh huselt shidne
+    const books = await Books.find(req.query,select).populate({
       path:'category',
       select:'name averagePrice'
-    });;
+    })
+    .sort(sort)
+    .skip(pagenation.start-1)
+    .limit(limit);
       res.status(200).json({
         success: true,
         count: books.length, 
         data: books,
+        pagenation
       });
   });
 
   //ap/v1/categories/:categoryId/books
 exports.getCategoryBooks = asyncHandler(async(req, res, next) => {
+    
+  console.log("== {query data} ==>".rainbow,req.query);
+  const select = req.query.select || {};
+  const sort = req.query.sort || {};
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 5;
+  ["select","sort","page","limit"].forEach( el => delete req.query[el])
+  
+  //pagenation
+  
+  const pagenation = await paginate(page, limit, Books);
   //deer ajilj ehelsn query-g huleegd duushaar doosh huselt shidne
-  const books = await Books.find({category: req.params.categoryId});
+  const books = await Books.find({...req.query, category: req.params.categoryId},select)
+  .sort(sort)
+  .skip(pagenation.start-1)
+  .limit(limit);
     res.status(200).json({
       success: true,
       count: books.length, 
       data: books,
+      pagenation
     });
 });
   
