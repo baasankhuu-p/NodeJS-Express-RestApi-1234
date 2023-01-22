@@ -3,8 +3,8 @@ const Category = require("../Models/Category");
 const MyError = require("../utils/myError");
 const asyncHandler = require('../middleware/asyncHandler');
 const path = require('path');
-const { findById } = require("../Models/book");
 const paginate = require('../utils/paginate');
+const Users = require("../Models/register")
 //api/v1/books
 exports.getBooks = asyncHandler(async(req, res, next) => {
     
@@ -73,6 +73,7 @@ exports.getBook = asyncHandler(async(req, res, next) => {
 });
 
 exports.updateBooks = asyncHandler(async(req, res, next) => {
+  req.body.updateUser = req.user;
   const book = await Books.findByIdAndUpdate(req.params.id, req.body,{
     new: true,//Шинэчлэгдсэн мэдээллийг өгнө
     runValidators: true,//Баз үүсгэж байхдаа гаргаж байасн шалгалтыг бас шалгаж өгөөрэй гэж хэлж өгнө,
@@ -81,9 +82,12 @@ exports.updateBooks = asyncHandler(async(req, res, next) => {
     {
       throw new MyError(`${req.params.id}-ийм ID-тай ном олдсонгүй ..`,400)
     }
+    //protect turuulj ajilsnii daraa user-n id oldh yum
+    const user = await Users.findById(req.user);
     res.status(200).json({
       success: true,
       data: book,
+      whoBook: {'name: ':user.name,'email: ':user.email}
     });
 });
 
@@ -94,10 +98,12 @@ exports.deleteBook = asyncHandler(async(req, res, next) => {
   {
     throw new MyError(`${req.params.id}-ийм ID-тай Категори олдсонгүй ..`,400)
   }
+  const user = Users.findById(req.user);
   book.remove();
   res.status(200).json({
     success: true,
     data: book,
+    whoDeleted: {'name: ':user.name,'email: ':user.email}
   });
 });
 
@@ -107,6 +113,7 @@ exports.createBook = asyncHandler(async(req, res, next) => {
     {
       throw new MyError(`${req.params.id}-ийм ID-тай Категори олдсонгүй ..`,400)
     }
+    req.body.createUser = req.user;
     const book = await Books.create(req.body);
     return res.status(200).json({
       success: true,
@@ -141,7 +148,7 @@ exports.uploadBookPhoto = asyncHandler(async(req, res, next) => {
     book.save();
     return res.status(200).json({
       success: true,
-      data: file.name
+      data: file.name,
     })
     res.end()
   });

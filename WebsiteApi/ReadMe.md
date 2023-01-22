@@ -360,3 +360,74 @@ exports.getCategory = asyncHandler(async(req, res, next) => {
     https://www.npmjs.com/package/jsonwebtoken
     bash: $ npm install jsonwebtoken
 ```
+## 58) Хэрэглэгчийн логин хийх endpoint-ийг бичицгээе!
+```C
+    //Users Controller
+        const { email, password } = req.body;
+        if(!email || !password){
+            //err message
+        }
+        const user = await Users.findOne({email}).select("+password");
+        if(!user){
+            //err message
+        }
+        const ok = await user.CheckPass(password);
+        if(!ok){
+            //err message
+        }
+        res.status(200).json({
+            success: true,
+            token: user.getJsonWebToken(), 
+            user: user
+        })
+    // model
+        UserSchema.methods.CheckPass = async function(password) {
+            return await bcrypt.compare(password,this.password);
+        }
+    // router
+        router.route('/login')
+                .post(loginUser);
+```
+## 59) Endpoint-уудыг токеноор хамгаалах protect middleware бичиж ашиглах
+```C
+    exports.protect = asyncHandler(async(req,res,next) => {
+        if(!req.headers.authorization){
+            throw new MyError('Энэ үйлдлийг хийхэд таны эрх хүрэхгүй байна',400)
+        }
+        const token = req.headers.authorization.split(" ")[1];
+        if(!token){
+            throw new MyError('Токен байхгүй байна',401)
+        }
+        const ObjToken = jwt.verify(token,process.env.JWT_AMAZON_SECRET);
+        req.user = ObjToken.id;
+        req.role = ObjToken.roler;
+        next();
+    });
+```
+## 61) User, Operator, Admin эрхүүдийг ашиглан хандах ажиллах эрхийг хязгаарлах authorize middleware бичицгээе!
+```C
+exports.authorizer = (...roler) =>{
+    return(req,res,next) => {
+        if(!roler.includes(req.role)){
+            throw new MyError('Таны эрх ['+req.role+'] энэ үйлдлийг хийх боломжгүй',403);
+        }
+        next();
+    }
+}
+// authorizer("admin") хэрэглэгчийн эрх
+```
+
+## 62) Номыг үүсгэсэн болон өөрчилсөн хэрэглэгчийн ID-ийг базд хадгалах
+```C
+
+```
+## 65 хүртэл дагаж хийсэн
+## 67) Мартсан нууц үгийг сэргээх апи бичицгээе! Нууц үг сэргээх токен үүсгэх нь
+```C
+    npm i crypto
+```
+## 69) Нууц үгийг сэргээх имэйлийг илгээх кодыг бичицгээе!
+```C
+    https://nodemailer.com/
+    https://mailtrap.io/
+```

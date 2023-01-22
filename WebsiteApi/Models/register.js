@@ -45,13 +45,13 @@ UserSchema.pre("save",async function(){
     //passiig oilgomjgui blgj oorchlnoo ingsneer hack-s baga zrg secure hgdj ognoo
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt)
-
 })
 //JWT
 UserSchema.methods.getJsonWebToken = function (){
     const token =JWT.sign(
         {
-            id: this._id
+            id: this._id,
+            roler: this.roler
         },
         process.env.JWT_AMAZON_SECRET,
         {
@@ -59,5 +59,8 @@ UserSchema.methods.getJsonWebToken = function (){
         });
         return token;
 }
-
+//User login pass check
+UserSchema.methods.CheckPass = async function(pass) {
+    return await bcrypt.compare(pass,this.password);
+}
 module.exports = mongoose.model("Users",UserSchema)

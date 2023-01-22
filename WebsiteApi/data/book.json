@@ -12,6 +12,8 @@
           "new",
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e96cc1ba816c94e009a9c9e"
     },
     {
@@ -28,6 +30,8 @@
           "old",
           "kindle"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e96cc1ba816c94e009a9c9e"
     },
     {
@@ -43,6 +47,8 @@
           "new",
           "old"
        ],
+       "createUser": "63ccdd270d73976bc9e730d6",
+       "updateUser": "63ccdd270d73976bc9e730d6",
        "category":"5e96cc1ba816c94e009a9c9e"
     },
     {
@@ -60,6 +66,8 @@
           "kindle",
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d6",
+       "updateUser": "63ccdd270d73976bc9e730d6",
        "category":"5e96cc1ba816c94e009a9c9e"
     },
     {
@@ -74,6 +82,8 @@
        "available":[
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d6",
+       "updateUser": "63ccdd270d73976bc9e730d6",
        "category":"5e9047fd49941f52dcb01b35"
     },
     {
@@ -89,6 +99,8 @@
           "kindle",
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e9047fd49941f52dcb01b35"
     },
     {
@@ -103,6 +115,8 @@
        "available":[
           "new"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e9047fd49941f52dcb01b35"
     },
     {
@@ -118,6 +132,8 @@
           "new",
           "old"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e9047fd49941f52dcb01b35"
     },
     {
@@ -132,6 +148,8 @@
        "available":[
           "new"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90434cd433fa11b078ed8a"
     },
     {
@@ -149,6 +167,8 @@
           "kindle",
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90434cd433fa11b078ed8a"
     },
     {
@@ -166,6 +186,8 @@
           "kindle",
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90434cd433fa11b078ed8a"
     },
     {
@@ -181,6 +203,8 @@
           "new",
           "kindle"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90434cd433fa11b078ed8a"
     },
     {
@@ -198,6 +222,8 @@
           "kindle",
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90434cd433fa11b078ed8a"
     },
     {
@@ -215,6 +241,8 @@
           "kindle",
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90478549941f52dcb01b34"
     },
     {
@@ -230,6 +258,8 @@
        "available":[
           "old"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90478549941f52dcb01b34"
     },
     {
@@ -245,6 +275,8 @@
           "kindle",
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90478549941f52dcb01b34"
     },
     {
@@ -261,6 +293,8 @@
           "new",
           "pdf"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90478549941f52dcb01b34"
     },
     {
@@ -275,6 +309,8 @@
        "available":[
           "old"
        ],
+       "createUser": "63ccdd270d73976bc9e730d1",
+       "updateUser": "63ccdd270d73976bc9e730d1",
        "category":"5e90478549941f52dcb01b34"
     }
  ]

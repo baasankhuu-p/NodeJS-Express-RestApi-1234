@@ -1,0 +1,23 @@
+[
+    {
+        "_id": "63cbda7b25a0ddb7a526ccb3",
+        "name": "Baasankhuu",
+        "email": "admin@gmail.com",
+        "roler": "operator",
+        "password":"1234"
+    },
+    {
+        "_id": "63ccdd270d73976bc9e730d6",
+        "name": "Davaa",
+        "email": "oper@gmail.com",
+        "roler": "operator",
+        "password":"1234"
+    },
+    {
+        "_id": "63ccdd270d73976bc9e730d1",
+        "name": "Bagaa",
+        "email": "oper1@gmail.com",
+        "roler": "operator",
+        "password":"1234"
+    }
+]
